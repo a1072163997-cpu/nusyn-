@@ -5,10 +5,12 @@ import ProductCard from './components/ProductCard';
 import AiAssistant from './components/AiAssistant';
 import EndorsementCarousel from './components/EndorsementCarousel';
 import ExclusiveAdvantages from './components/ExclusiveAdvantages';
+import BlogSection from './components/BlogSection';
 import UserReviews from './components/UserReviews';
 import NewsletterSubscribe from './components/NewsletterSubscribe';
 import PromoPopup from './components/PromoPopup';
 import FloatingSupport from './components/FloatingSupport';
+import ScenarioCategories from './components/ScenarioCategories';
 import { PRODUCTS } from './constants';
 import { Category } from './types';
 import { Facebook, Twitter, Instagram } from 'lucide-react';
@@ -81,10 +83,16 @@ const App: React.FC = () => {
           </div>
         </section>
 
+        {/* Scenario Categories (Visual Grid) */}
+        <ScenarioCategories />
+
         {/* Exclusive Advantages (Grid of Icons) */}
         <ExclusiveAdvantages />
         
-        {/* User Reviews */}
+        {/* Blog Section (Added before Trusted by Creators) */}
+        <BlogSection />
+
+        {/* User Reviews (Trusted by Creators) */}
         <UserReviews />
 
         {/* AI Assistant Section */}
