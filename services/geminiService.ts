@@ -2,10 +2,24 @@ import { GoogleGenAI } from "@google/genai";
 import { PRODUCTS } from '../constants';
 
 // The API key must be obtained exclusively from the environment variable process.env.API_KEY.
-const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
+// We initialize inside the function to prevent the entire app from crashing (white screen) 
+// if the environment variable is missing at startup.
 
 export const getProductRecommendation = async (userQuery: string): Promise<{ text: string; recommendedProductId?: string }> => {
   try {
+    const apiKey = process.env.API_KEY;
+
+    // Graceful handling if Key is missing (prevents crash)
+    if (!apiKey) {
+      console.error("Gemini API Key is missing. Please set VITE_API_KEY (or API_KEY in deployment).");
+      return {
+        text: "System Alert: API Key is missing. Please configure your environment variables to enable AI features.",
+      };
+    }
+
+    // Initialize on demand
+    const ai = new GoogleGenAI({ apiKey: apiKey });
+
     const productContext = PRODUCTS.map(p => 
       `ID: ${p.id}, Name: ${p.name}, Category: ${p.category}, Price: $${p.price}, Specs: ${p.specs.join(', ')}, Tagline: ${p.tagline}`
     ).join('\n');
