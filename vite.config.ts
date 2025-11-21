@@ -11,10 +11,9 @@ export default defineConfig(({ mode }) => {
     plugins: [react()],
     define: {
       // By defining 'process.env' as an object, we prevent "ReferenceError: process is not defined"
-      // which is the most common cause of the "White Screen" in Vite apps using legacy Node.js patterns.
-      // We also ensure API_KEY is at least an empty string if not found, to prevent build/runtime undefined errors.
+      // We also ensure API_KEY checks both 'API_KEY' and 'VITE_API_KEY'
       'process.env': {
-        API_KEY: env.API_KEY || ''
+        API_KEY: env.API_KEY || env.VITE_API_KEY || ''
       }
     }
   }
