@@ -13,7 +13,7 @@ export const getProductRecommendation = async (userQuery: string): Promise<{ tex
     if (!apiKey) {
       console.error("Gemini API Key is missing. Please set VITE_API_KEY (or API_KEY in deployment).");
       return {
-        text: "System Alert: API Key is missing. Please configure your environment variables to enable AI features.",
+        text: "⚠️ System Alert: API Key is missing.\n\nTo enable AI features, please get a key from:\nhttps://aistudio.google.com/app/apikey\n\nThen create a .env file in your project root with:\nVITE_API_KEY=your_key_here",
       };
     }
 

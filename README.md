@@ -2,6 +2,18 @@
 
 This is a React-based e-commerce landing page for Nusyn, featuring a Gemini-powered AI assistant.
 
+## 🔑 API Key Setup (Crucial)
+
+To make the AI Assistant work, you need a Google Gemini API Key.
+
+1. **Get a Key**: Go to [Google AI Studio](https://aistudio.google.com/app/apikey) and create a new API key.
+2. **Configure**: Create a file named `.env` in the root folder of this project.
+3. **Paste Key**: Add the following line to the `.env` file:
+   ```
+   VITE_API_KEY=AIzaSyYourKeyHere...
+   ```
+   *(Replace the value with your actual key)*
+
 ## How to Export and Run Locally
 
 Since you cannot download a ZIP directly from the chat interface, follow these steps to set this project up on your local machine.
@@ -17,6 +29,7 @@ Create a new folder for your project and creating the following file structure:
   ├── index.html
   ├── package.json
   ├── tsconfig.json
+  ├── vite.config.ts
   └── src
       ├── index.tsx
       ├── App.tsx
@@ -30,6 +43,9 @@ Create a new folder for your project and creating the following file structure:
       │   ├── EndorsementCarousel.tsx
       │   ├── ExclusiveAdvantages.tsx
       │   └── UserReviews.tsx
+      │   ├── NewsletterSubscribe.tsx
+      │   ├── PromoPopup.tsx
+      │   └── FloatingSupport.tsx
       └── services
           └── geminiService.ts
 ```
@@ -47,15 +63,7 @@ npm install -D typescript vite @vitejs/plugin-react tailwindcss autoprefixer pos
 ```
 
 ### 5. Configure Vite & Tailwind
-Create a `vite.config.ts`:
-```ts
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
-
-export default defineConfig({
-  plugins: [react()],
-})
-```
+Ensure `vite.config.ts` is created with the provided code.
 
 Initialize Tailwind:
 ```bash
@@ -74,3 +82,4 @@ The app should now be running at `http://localhost:5173`.
 - **Typewriter Animation**: See `src/components/Hero.tsx` and `index.html` styles.
 - **AI Assistant**: Powered by Google Gemini (`src/services/geminiService.ts`).
 - **Responsive Design**: Tailwind CSS.
+- **Live Sale Popup**: Interactive visual component.
