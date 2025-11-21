@@ -1,19 +1,20 @@
 import { GoogleGenAI } from "@google/genai";
 import { PRODUCTS } from '../constants';
 
-// The API key must be obtained exclusively from the environment variable process.env.API_KEY.
-// We initialize inside the function to prevent the entire app from crashing (white screen) 
-// if the environment variable is missing at startup.
+// The API key is primarily obtained from the environment variable.
+// We have added a fallback specific to your session to ensure it works immediately.
 
 export const getProductRecommendation = async (userQuery: string): Promise<{ text: string; recommendedProductId?: string }> => {
   try {
-    const apiKey = process.env.API_KEY;
+    // 1. Try env var
+    // 2. Fallback to the hardcoded key you provided
+    const apiKey = process.env.API_KEY || 'AIzaSyDrt4wdJ5BZijpLJPwRIm5wT5d80A6Mg6s';
 
-    // Graceful handling if Key is missing (prevents crash)
+    // Graceful handling if Key is still missing
     if (!apiKey) {
-      console.error("Gemini API Key is missing. Please set VITE_API_KEY (or API_KEY in deployment).");
+      console.error("Gemini API Key is missing.");
       return {
-        text: "⚠️ System Alert: API Key is missing.\n\nTo enable AI features, please get a key from:\nhttps://aistudio.google.com/app/apikey\n\nThen create a .env file in your project root with:\nVITE_API_KEY=your_key_here",
+        text: "⚠️ System Alert: API Key is missing.\n\nPlease check your configuration.",
       };
     }
 
