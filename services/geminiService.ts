@@ -1,6 +1,7 @@
 import { GoogleGenAI } from "@google/genai";
 import { PRODUCTS } from '../constants';
 
+// The API key must be obtained exclusively from the environment variable process.env.API_KEY.
 const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
 
 export const getProductRecommendation = async (userQuery: string): Promise<{ text: string; recommendedProductId?: string }> => {
