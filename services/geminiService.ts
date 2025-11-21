@@ -1,17 +1,12 @@
 import { GoogleGenAI } from "@google/genai";
 import { PRODUCTS } from '../constants';
 
-// The API key is primarily obtained from the environment variable.
-// We have added a fallback specific to your session to ensure it works immediately.
+// Hardcoded API Key for immediate functionality as requested
+const API_KEY = 'AIzaSyDrt4wdJ5BZijpLJPwRIm5wT5d80A6Mg6s';
 
 export const getProductRecommendation = async (userQuery: string): Promise<{ text: string; recommendedProductId?: string }> => {
   try {
-    // 1. Try env var
-    // 2. Fallback to the hardcoded key you provided
-    const apiKey = process.env.API_KEY || 'AIzaSyDrt4wdJ5BZijpLJPwRIm5wT5d80A6Mg6s';
-
-    // Graceful handling if Key is still missing
-    if (!apiKey) {
+    if (!API_KEY) {
       console.error("Gemini API Key is missing.");
       return {
         text: "⚠️ System Alert: API Key is missing.\n\nPlease check your configuration.",
@@ -19,7 +14,7 @@ export const getProductRecommendation = async (userQuery: string): Promise<{ tex
     }
 
     // Initialize on demand
-    const ai = new GoogleGenAI({ apiKey: apiKey });
+    const ai = new GoogleGenAI({ apiKey: API_KEY });
 
     const productContext = PRODUCTS.map(p => 
       `ID: ${p.id}, Name: ${p.name}, Category: ${p.category}, Price: $${p.price}, Specs: ${p.specs.join(', ')}, Tagline: ${p.tagline}`
