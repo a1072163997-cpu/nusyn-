@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
@@ -11,6 +12,7 @@ import NewsletterSubscribe from './components/NewsletterSubscribe';
 import PromoPopup from './components/PromoPopup';
 import FloatingSupport from './components/FloatingSupport';
 import ScenarioCategories from './components/ScenarioCategories';
+import ScrollRevealText from './components/ScrollRevealText';
 import { PRODUCTS } from './constants';
 import { Category } from './types';
 import { Facebook, Twitter, Instagram } from 'lucide-react';
@@ -85,6 +87,9 @@ const App: React.FC = () => {
 
         {/* Scenario Categories (Visual Grid) */}
         <ScenarioCategories />
+
+        {/* Scroll Reveal Text */}
+        <ScrollRevealText />
 
         {/* Exclusive Advantages (Grid of Icons) */}
         <ExclusiveAdvantages />
