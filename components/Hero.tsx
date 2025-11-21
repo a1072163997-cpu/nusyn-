@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { ArrowRight, Shield, Zap, Globe } from 'lucide-react';
+import { ArrowRight, Shield, Zap, Globe, BatteryCharging } from 'lucide-react';
 
 const PHRASES = [
   "MOBILE STORAGE",
@@ -26,18 +26,16 @@ const Hero: React.FC = () => {
       );
 
       // Dynamic Pacing for Natural Feel
-      let speed = 100 - Math.random() * 50; // Randomize slightly for human feel
-      if (isDeleting) speed = 50; // Faster deleting
+      let speed = 100 - Math.random() * 50; 
+      if (isDeleting) speed = 50; 
 
       if (!isDeleting && text === fullText) {
-        // Finished typing phrase
-        speed = 2500; // Longer pause to read
+        speed = 2500; 
         setIsDeleting(true);
       } else if (isDeleting && text === '') {
-        // Finished deleting phrase
         setIsDeleting(false);
         setLoopNum(loopNum + 1);
-        speed = 500; // Pause before starting next
+        speed = 500; 
       }
 
       setTypingSpeed(speed);
@@ -48,50 +46,57 @@ const Hero: React.FC = () => {
   }, [text, isDeleting, loopNum, typingSpeed]);
 
   return (
-    <div className="relative bg-white pt-24 lg:pt-0 min-h-[90vh] flex items-center overflow-hidden">
+    <div className="relative bg-nusyn-dark min-h-[85vh] flex items-center overflow-hidden text-white">
       
-      {/* Background Decoration */}
-      <div className="absolute right-0 top-0 w-1/2 h-full bg-gray-50 skew-x-12 translate-x-20 hidden lg:block z-0"></div>
+      {/* Dark textured background */}
+      <div className="absolute inset-0 bg-[#1a1a1a] opacity-100">
+        {/* Subtle grid pattern (Anker-tech feel) */}
+        <div className="absolute inset-0 opacity-10" 
+             style={{ backgroundImage: 'radial-gradient(#444 1px, transparent 1px)', backgroundSize: '30px 30px' }}>
+        </div>
+      </div>
       
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center">
+        
+        {/* Left Content */}
         <div className="w-full md:w-1/2 text-left space-y-8 py-12 md:py-24">
-          <div className="inline-flex items-center space-x-2 bg-orange-50 border border-orange-100 rounded-full px-4 py-1">
+          <div className="inline-flex items-center space-x-2 bg-white/10 border border-white/20 rounded px-4 py-1.5 backdrop-blur-sm">
              <span className="w-2 h-2 bg-nusyn-orange rounded-full animate-pulse"></span>
-            <span className="text-nusyn-orange text-xs font-bold uppercase tracking-widest">New Release 2025</span>
+            <span className="text-nusyn-orange text-xs font-bold uppercase tracking-widest">Gen 3 Series Available</span>
           </div>
           
-          <h1 className="text-5xl md:text-7xl font-black text-gray-900 leading-[0.95] tracking-tight min-h-[240px] sm:min-h-[180px] md:min-h-auto">
-            ENGINEERED FOR <br />
-            <span className="animate-gradient-text">{text}</span>
-            <span className="cursor-blink inline-block w-[3px] h-10 md:h-14 bg-gray-900 ml-2 align-middle -translate-y-1 md:-translate-y-2"></span>
+          <h1 className="text-5xl md:text-7xl font-black text-white leading-[0.95] tracking-tight min-h-[240px] sm:min-h-[180px] md:min-h-auto">
+            POWER YOUR <br />
+            <span className="text-nusyn-orange">{text}</span>
+            <span className="cursor-blink inline-block w-[3px] h-10 md:h-14 bg-white ml-2 align-middle -translate-y-1 md:-translate-y-2"></span>
           </h1>
           
-          <p className="text-lg text-gray-600 max-w-lg leading-relaxed">
-            The next generation of rugged storage and connectivity. 
-            Powering your workflow wherever the journey takes you.
+          <p className="text-lg text-gray-400 max-w-lg leading-relaxed">
+            Rugged durability meets cutting-edge speed. Designed for creators who push boundaries.
           </p>
 
           <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
-            <a href="#products" className="flex items-center justify-center px-8 py-4 bg-nusyn-orange text-white font-bold rounded-full hover:bg-orange-600 transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-1">
-              Shop Now <ArrowRight className="ml-2 w-5 h-5" />
+            <a href="#products" className="flex items-center justify-center px-8 py-4 bg-nusyn-orange text-white font-bold rounded hover:bg-orange-600 transition-all shadow-lg shadow-orange-900/20 transform hover:-translate-y-1 uppercase tracking-wide">
+              Shop Products <ArrowRight className="ml-2 w-5 h-5" />
             </a>
-            <a href="#ai-help" className="flex items-center justify-center px-8 py-4 bg-white border-2 border-gray-200 text-gray-900 font-bold rounded-full hover:border-gray-900 transition-all">
-              Ask AI Assistant
+            <a href="#ai-help" className="flex items-center justify-center px-8 py-4 bg-transparent border-2 border-gray-600 text-white font-bold rounded hover:border-white hover:bg-white/5 transition-all uppercase tracking-wide">
+              Talk to AI Sales
             </a>
           </div>
 
-          <div className="pt-8 flex space-x-8 border-t border-gray-100">
-            <div className="flex items-center space-x-2 text-gray-600">
-              <Shield className="w-5 h-5 text-nusyn-orange" />
-              <span className="text-sm font-bold">IP67 Rated</span>
+          {/* Stats Bar */}
+          <div className="pt-8 flex space-x-8 border-t border-gray-800">
+            <div className="flex flex-col">
+              <span className="text-2xl font-black text-white">IP67</span>
+              <span className="text-xs text-gray-500 uppercase font-bold">Waterproof</span>
             </div>
-            <div className="flex items-center space-x-2 text-gray-600">
-              <Zap className="w-5 h-5 text-nusyn-orange" />
-              <span className="text-sm font-bold">Titanium Shell</span>
+            <div className="flex flex-col">
+              <span className="text-2xl font-black text-white">5YR</span>
+              <span className="text-xs text-gray-500 uppercase font-bold">Warranty</span>
             </div>
-             <div className="flex items-center space-x-2 text-gray-600">
-              <Globe className="w-5 h-5 text-nusyn-orange" />
-              <span className="text-sm font-bold">Eco-Packaging</span>
+             <div className="flex flex-col">
+              <span className="text-2xl font-black text-white">24/7</span>
+              <span className="text-xs text-gray-500 uppercase font-bold">Support</span>
             </div>
           </div>
         </div>
@@ -99,22 +104,22 @@ const Hero: React.FC = () => {
         {/* Hero Image Composition */}
         <div className="w-full md:w-1/2 mt-8 md:mt-0 relative flex justify-center md:justify-end">
            <div className="relative z-10 w-full max-w-lg">
-             <div className="absolute inset-0 bg-gradient-to-tr from-nusyn-orange/20 to-transparent rounded-full blur-3xl transform translate-y-10"></div>
+             {/* Orange Glow Effect */}
+             <div className="absolute inset-0 bg-gradient-to-tr from-nusyn-orange/30 to-transparent rounded-full blur-3xl transform translate-y-10"></div>
+             
              <img 
-                src="https://picsum.photos/800/800?gadgets" 
+                src="https://picsum.photos/800/800?tech,rugged" 
                 alt="Nusyn Gear" 
-                className="relative z-10 w-full h-auto rounded-3xl shadow-2xl border-4 border-white" 
+                className="relative z-10 w-full h-auto rounded-xl shadow-2xl border border-gray-700 grayscale-[0.2] hover:grayscale-0 transition-all duration-500" 
              />
              
-             {/* Floating Badge */}
-             <div className="absolute -bottom-6 -left-6 bg-white p-6 rounded-xl shadow-xl border border-gray-100 z-20 animate-bounce-slow hidden md:block">
-                <div className="flex items-center space-x-3">
-                    <div className="bg-green-100 p-2 rounded-full">
-                        <Zap className="w-6 h-6 text-green-600" />
-                    </div>
+             {/* Floating Tech Spec Badge */}
+             <div className="absolute -bottom-6 -left-6 bg-[#222] p-6 rounded shadow-2xl border-l-4 border-nusyn-orange z-20 animate-bounce-slow hidden md:block">
+                <div className="flex items-center space-x-4">
+                    <BatteryCharging className="w-8 h-8 text-nusyn-orange" />
                     <div>
-                        <p className="text-xs text-gray-500 font-bold uppercase">Transfer Speed</p>
-                        <p className="text-xl font-black text-gray-900">2800 MB/s</p>
+                        <p className="text-xs text-gray-400 font-bold uppercase">Passthrough</p>
+                        <p className="text-xl font-black text-white">100W PD</p>
                     </div>
                 </div>
              </div>

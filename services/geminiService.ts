@@ -1,18 +1,11 @@
 import { GoogleGenAI } from "@google/genai";
 import { PRODUCTS } from '../constants';
 
-// Hardcoded API Key for immediate functionality as requested
+// Hardcoded API Key for immediate functionality
 const API_KEY = 'AIzaSyDrt4wdJ5BZijpLJPwRIm5wT5d80A6Mg6s';
 
 export const getProductRecommendation = async (userQuery: string): Promise<{ text: string; recommendedProductId?: string }> => {
   try {
-    if (!API_KEY) {
-      console.error("Gemini API Key is missing.");
-      return {
-        text: "⚠️ System Alert: API Key is missing.\n\nPlease check your configuration.",
-      };
-    }
-
     // Initialize on demand
     const ai = new GoogleGenAI({ apiKey: API_KEY });
 

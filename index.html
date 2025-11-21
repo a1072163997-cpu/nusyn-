@@ -15,14 +15,15 @@
             },
             colors: {
               nusyn: {
-                orange: '#FF5E00', // Jackery-inspired Orange
-                dark: '#1A1A1A',
-                black: '#0F0F0F',
+                orange: '#FF5000', // Jackery Orange (Safety Orange)
+                dark: '#1F1F1F',   // Jackery/Anker Dark Gray
+                black: '#000000',
                 gray: '#2D2D2D',
+                light: '#F5F5F5',
               }
             },
             backgroundImage: {
-              'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+              'gradient-dark': 'linear-gradient(180deg, #1F1F1F 0%, #000000 100%)',
             },
             animation: {
               'gradient-text': 'gradientMove 3s linear infinite',
@@ -69,16 +70,16 @@
         background: #f1f1f1;
       }
       ::-webkit-scrollbar-thumb {
-        background: #d1d5db;
+        background: #717171;
         border-radius: 4px;
       }
       ::-webkit-scrollbar-thumb:hover {
-        background: #FF5E00;
+        background: #FF5000;
       }
 
-      /* Typewriter Gradient Animation */
+      /* Typewriter Gradient Animation - Adjusted for Orange/White theme */
       .animate-gradient-text {
-        background: linear-gradient(to right, #FF5E00, #FF9900, #FF4500, #FF5E00);
+        background: linear-gradient(to right, #FF5000, #FFFFFF, #FF5000);
         background-size: 200% auto;
         color: transparent;
         -webkit-background-clip: text;
